@@ -1,24 +1,21 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_pocket/blocs/event_states/event_states.dart';
-import 'package:news_pocket/models/models.dart';
 import 'package:news_pocket/service/service.dart';
 
-class NewsSearchBloc extends Bloc<NewsEvent, NewsState> {
-  NewsSearchBloc() : super(NewsUninitialized());
+class NewsSearchBloc extends Bloc<NewsSearchFetch, NewsState> {
+  NewsSearchBloc() : super(NewsUninitialized()) {
+    on<NewsSearchFetch>(_onSearchNews);
+  }
 
-  @override
-  Stream<NewsState> mapEventToState(NewsEvent event) async* {
+  Future<void> _onSearchNews(
+      NewsSearchFetch event, Emitter<NewsState> emit) async {
     try {
-      if (event is NewsSearchFetch) {
-        yield NewsLoading();
-
-        List<News> searchNews = await Service.searchNews(event.keyword);
-
-        yield NewsSearchFetchSuccess(news: searchNews);
-      }
+      emit(NewsLoading());
+      final searchNews = await Service.searchNews(event.keyword);
+      emit(NewsSearchFetchSuccess(news: searchNews));
     } catch (err) {
       print(err);
-      yield NewsError();
+      emit(NewsError());
     }
   }
 }

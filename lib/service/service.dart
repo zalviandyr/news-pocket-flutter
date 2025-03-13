@@ -10,7 +10,7 @@ class Service {
       'https://newsapi.org/v2/everything?apiKey=ecfc41dcceeb40038a7c2dad7b34d715';
 
   static Future<List<News>> getNews(String category) async {
-    Uri url = Uri.parse('$_topHeadline&country=id&category=$category');
+    Uri url = Uri.parse('$_topHeadline&country=us&category=$category');
     var response = await http.get(url);
 
     var json = jsonDecode(response.body);

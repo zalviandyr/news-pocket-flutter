@@ -5,6 +5,9 @@ import 'package:news_pocket/blocs/blocs.dart';
 import 'package:news_pocket/ui/screens/screens.dart';
 
 void main() {
+  // bloc observer
+  Bloc.observer = AppBlocObserver();
+
   runApp(MyApp());
 }
 

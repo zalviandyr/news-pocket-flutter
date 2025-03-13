@@ -99,7 +99,7 @@ class _SearchScreenState extends State<SearchScreen> {
               prefixIcon: Icon(Icons.search),
               fillColor: Colors.grey.shade300,
               filled: true,
-              hintText: 'Cari berita'),
+              hintText: 'Search'),
         ),
       ),
     );

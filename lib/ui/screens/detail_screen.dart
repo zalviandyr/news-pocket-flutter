@@ -28,7 +28,7 @@ class _DetailScreenState extends State<DetailScreen> {
           children: [
             Text(
               widget.news.title,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 15.0),
             Text(

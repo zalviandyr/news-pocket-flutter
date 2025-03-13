@@ -4,35 +4,29 @@ import 'package:news_pocket/models/news.dart';
 import 'package:news_pocket/service/service.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
-  final List<Map<String, List<News>>> _news = [];
-  NewsBloc() : super(NewsUninitialized());
+  final Map<String, List<News>> _newsCache = {};
 
-  @override
-  Stream<NewsState> mapEventToState(NewsEvent event) async* {
+  NewsBloc() : super(NewsUninitialized()) {
+    on<NewsFetch>(_onFetchNews);
+  }
+
+  Future<void> _onFetchNews(NewsFetch event, Emitter<NewsState> emit) async {
+    final slug = event.categorySlug;
+
     try {
-      if (event is NewsFetch) {
-        String slug = event.categorySlug;
+      // Cek cache sebelum fetch
+      if (!_newsCache.containsKey(slug)) {
+        emit(NewsLoading());
 
-        // check jika belum ada list
-        var search = _news.where((element) => element.keys.first == slug);
-        if (_news.isEmpty || search.isEmpty) {
-          yield NewsLoading();
-
-          // simpan hasil news sesuai category
-          List<News> newsFromApi = await Service.getNews(slug);
-          _news.add({slug: newsFromApi});
-        }
-
-        List<News> news = _news
-            .where((element) => element.keys.first == slug)
-            .first
-            .values
-            .first;
-        yield NewsFetchSuccess(news: news);
+        final newsFromApi = await Service.getNews(slug);
+        _newsCache[slug] = newsFromApi;
       }
-    } catch (err) {
-      print(err);
-      yield NewsError();
+
+      emit(NewsFetchSuccess(news: _newsCache[slug]!));
+    } catch (err, trace) {
+      onError(err, trace);
+
+      emit(NewsError());
     }
   }
 }

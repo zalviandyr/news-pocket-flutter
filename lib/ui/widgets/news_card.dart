@@ -78,7 +78,7 @@ class NewsCard extends StatelessWidget {
                           news!.source,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText1!
+                              .bodyLarge!
                               .copyWith(color: Colors.white),
                         ),
                       ),
@@ -107,7 +107,7 @@ class NewsCard extends StatelessWidget {
                               ),
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(color: Colors.white),
                             ),
                           ],
@@ -143,7 +143,7 @@ class NewsCard extends StatelessWidget {
                   news!.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
         ],
       ),

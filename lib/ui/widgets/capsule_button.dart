@@ -15,19 +15,18 @@ class CapsuleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.circular(50.0),
       color: Colors.transparent,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 7.0),
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
         child: InkWell(
-          borderRadius: BorderRadius.circular(50.0),
+          borderRadius: BorderRadius.circular(5.0),
           onTap: () => onTap(category),
           child: Container(
             width: 135.0,
             padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50.0),
+              borderRadius: BorderRadius.circular(5.0),
               border: Border.all(
                   color: isSelected ? Colors.transparent : Colors.grey),
               color: isSelected ? Colors.grey.shade500 : Colors.transparent,
@@ -35,7 +34,7 @@ class CapsuleButton extends StatelessWidget {
             child: Text(
               category.name,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: isSelected ? Colors.white : Colors.black,
                     letterSpacing: 1.0,
                   ),

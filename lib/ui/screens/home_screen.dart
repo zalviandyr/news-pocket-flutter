@@ -106,12 +106,12 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               'News Pocket',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 5.0),
             Text(
-              'Berita dari negara indonesia',
-              style: Theme.of(context).textTheme.bodyText2,
+              'News in United States',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Icon(Icons.search),
               const SizedBox(width: 7.0),
-              Text('Cari berita'),
+              Text('Search'),
             ],
           ),
         ),
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       flexibleSpace: Center(
         child: ListView(
-          padding: const EdgeInsets.only(top: 10.0),
+          padding: const EdgeInsets.only(top: 10.0, left: 5, right: 5),
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           children: _categories
